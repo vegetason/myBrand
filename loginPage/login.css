@@ -1,0 +1,102 @@
+*{
+    border: 1px solid blue;
+}
+html{
+    width: max(1600px,100vw);
+    height: auto;
+}
+body{
+    display: grid;
+    grid-template: minmax(100vh,1fr)/minmax(300px,1fr) minmax(1000px,4fr);
+    height: auto;
+    width:max(1600px,100vw);
+}
+#navBar{
+    grid-area: 1/1/2/2;
+    display: grid;
+    grid-template: 300px repeat(7,75px)/1fr;
+    background-color: #DFE0DF;
+    padding-bottom: 100px;
+}
+#navBar a{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    justify-content: center;
+    font-weight: 600;
+}
+#navBar a:hover{
+    color: #FFB703;
+}
+img[alt='Logo']{
+    border-radius: 50%;
+    align-self: center;
+    justify-self: center;
+}
+h1{
+    font-size: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    font-weight: 800;
+    height: 50px;
+}
+h3{
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+h2{
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    color: #FFB703;
+    justify-content: center;
+}
+#loginSection{
+    height: 600px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+form{
+    display: flex;
+    flex-direction: column;
+}
+form >div{
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    gap: 10px;
+}
+input{
+    height: 50px;
+    border-bottom: 1px solid black;
+    padding-left: 30px;
+}
+label{
+    font-size: 18px;
+    font-weight: 600;
+}
+button{
+    height: 50px;
+    width: 250px;
+    border-radius: 20px;
+    background-color: #FFB703;
+    font-size: 18px;
+    align-self: center;
+    margin-top: 20px;
+}
+
+button:hover{
+    background-color: #FB8500;
+    cursor: pointer;
+}
+
+p{
+    font-size: 18px;
+}
