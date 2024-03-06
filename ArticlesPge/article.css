@@ -95,6 +95,7 @@ input{
     width: 500px;
     border-radius: 30px;
     padding-left: 20px;
+    border: 0;
 }
 h4{
     color: #FFB703;
@@ -112,4 +113,7 @@ h3{
     font-size: 24px;
     display: flex;
     align-items: center;
+}
+a:hover{
+    border-bottom:1px solid black;
 }

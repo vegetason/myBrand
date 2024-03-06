@@ -135,3 +135,6 @@ button:hover{
     display: flex;
     gap: 30px;
 }
+a:hover{
+    border-bottom:1px solid black;
+}

@@ -1,6 +1,3 @@
-*{
-    border: 1px solid blue;
-}
 html{
     width: max(1600px,100vw);
     height: auto;
@@ -39,7 +36,7 @@ h1{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     font-weight: 800;
     height: 50px;
 }
@@ -62,25 +59,32 @@ h2{
     width: 400px;
     display: flex;
     flex-direction: column;
+    justify-self: center;
+    margin-top: 100px;
+    margin-right: 300px;
 }
 form{
     display: flex;
     flex-direction: column;
+    margin-top: 40px;
 }
 form >div{
     display: flex;
     flex-direction: column;
     height: 100px;
-    gap: 10px;
 }
 input{
     height: 50px;
+    border: 0;
     border-bottom: 1px solid black;
     padding-left: 30px;
+    font-size: 18px;
+    margin-top: 20px;
 }
 label{
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 600;
+    margin-top: 20px;
 }
 button{
     height: 50px;
@@ -89,7 +93,8 @@ button{
     background-color: #FFB703;
     font-size: 18px;
     align-self: center;
-    margin-top: 20px;
+    margin-top: 30px;
+    margin-bottom: 20px;
 }
 
 button:hover{
@@ -98,5 +103,46 @@ button:hover{
 }
 
 p{
-    font-size: 18px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
 }
+#loginSection >:last-child{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    margin-top: 30px;
+}
+/* #loginSection img{
+    width: 100%;
+    height: 100%;
+} */
+a{
+    color: black;
+    text-decoration: none;
+}
+a:hover{
+    border-bottom:1px solid black;
+}
+form >:nth-child(2) a{
+    font-size: 18px;
+    width: 140px;
+    align-self: flex-end;
+}
+#loginSection a{
+    color: #FFB703;
+    font-weight: 600;
+}
+
+#loginSection >:last-child >:last-child{
+    display: flex;
+    gap: 20px;
+}
+
+#loginSection img:hover{
+    box-shadow: 5px 5px 15px black;
+}
+/* #loginSection img{
+} */

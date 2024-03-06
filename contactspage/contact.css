@@ -112,6 +112,7 @@ input{
     width: 600px;
     height: 50px;
     background-color: #DFE0DF;
+    border: 0;
     border-radius: 20px;
 }
 
@@ -142,4 +143,7 @@ form{
 }
 input :hover,textarea :hover{
     box-sizing: 10px 10px 15px black;
+}
+a:hover{
+    border-bottom:1px solid black;
 }
