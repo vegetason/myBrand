@@ -1,6 +1,3 @@
-*{
-    border: 1px solid   blue;
-}
 html{
     width: max(1600px,100vw);
     height: auto;
@@ -77,6 +74,7 @@ p a{
     flex-direction: column;
     justify-self: center;
     margin-top: 100px;
+    margin-right: 300px;
     
 }
 form{

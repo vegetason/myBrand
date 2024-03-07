@@ -56,7 +56,7 @@ h2{
 }
 #loginSection{
     height: 600px;
-    width: 400px;
+    width: 500px;
     display: flex;
     flex-direction: column;
     justify-self: center;

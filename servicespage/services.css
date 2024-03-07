@@ -12,7 +12,7 @@ body{
 #navBar{
     grid-area: 1/1/2/2;
     display: grid;
-    grid-template: 300px repeat(7,minmax(75px,1fr))/1fr;
+    grid-template: 300px repeat(7,75px)/1fr;
     background-color: #DFE0DF;
     padding-bottom: 100px;
 }
@@ -71,7 +71,7 @@ h3{
 
 #sub-service{
     display: grid;
-    grid-template: 1fr 1fr/1fr 1fr 1fr;
+    grid-template: repeat(2,minmax(450px,1fr))/1fr 1fr 1fr;
     gap: 30px;
     padding-top: 30px;
 }
@@ -99,6 +99,7 @@ button{
     background-color: #FFB703;
     font-size: 18px;
     align-self: center;
+    margin-top: 30px;
 }
 
 button:hover{
