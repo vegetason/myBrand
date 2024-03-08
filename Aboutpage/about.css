@@ -1,12 +1,12 @@
 html{
-    width: max(1600px,100vw);
-    height: auto;
+    min-height: 100vh;
+    min-width: 100vw;
 }
 body{
     display: grid;
     grid-template: minmax(100vh,1fr)/minmax(300px,1fr) minmax(1000px,4fr);
-    height: auto;
-    width:max(1600px,100vw);
+    min-height: 100vh;
+    min-width:100vw;
 }
 #navBar{
     grid-area: 1/1/2/2;
@@ -67,6 +67,7 @@ p{
 #skills{
     display: grid;
     grid-template: 1fr/1fr 1fr;
+    gap: 10px;
 }
 
 #skills >:first-child{
@@ -121,6 +122,7 @@ button:hover{
     font-size: 18px;
     font-weight: 600;
     margin-top: 10px;
+    width: 500px;
 }
 
 #about >:last-child{
@@ -141,7 +143,7 @@ button:hover{
     box-shadow: 5px 5px 10px black;
     padding-left: 30px;
     margin-top: 30px;
-    height: 300px;
+    height: 400px;
 }
 /* #about >:last-child >div h2{
 background-color: #FFF8EC;
@@ -162,4 +164,56 @@ background-color: #FFF8EC;
 }
 a:hover{
     border-bottom:1px solid black;
+}
+@media (max-width:1416px) {
+    #navBar{
+        display: none;
+    }
+    html{
+        width: 100vw;
+    }
+    body{
+        display: grid;
+        grid-template: 1fr/1fr;
+        width:100vw;
+    }
+    #about{
+        display: grid;
+        grid-template: 80px 50px 200px 400px 1fr/1fr;
+        padding-left: 20px;
+    }
+    #about >:last-child >div >div{
+        height: 400px;
+    }
+    #skills{
+        display: grid;
+        grid-template: 1fr 1fr/1fr;
+    }
+}
+@media (max-width:1089px){
+
+#about >:last-child{
+    grid-template: repeat(2,1fr)/1fr;
+}
+#about >:last-child >div >div{
+    height: 300px;
+}
+}
+@media(max-width:733px){
+    h2{
+        font-size: 32px;
+    }
+}
+@media (max-width:660px){
+    h2{
+        font-size:28px;
+    }
+    p{
+        font-size: 20px;
+    }
+}
+@media(max-width:582px){
+    h2{
+        font-size: 25px;
+    }
 }

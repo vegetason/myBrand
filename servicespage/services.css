@@ -1,12 +1,12 @@
 html{
-    width: max(1600px,100vw);
-    height: auto;
+    width:100vw;
+    min-height: 100vh;
 }
 body{
     display: grid;
-    grid-template: minmax(100vh,1fr)/minmax(300px,1fr) minmax(1000px,4fr);
-    height: auto;
-    width:max(1600px,100vw);
+    grid-template: 1fr/minmax(300px,1fr) minmax(1000px,4fr);
+    min-height: 100vh;
+    width:100vw;
     margin: 0;
 }
 #navBar{
@@ -71,9 +71,11 @@ h3{
 
 #sub-service{
     display: grid;
-    grid-template: repeat(2,minmax(450px,1fr))/1fr 1fr 1fr;
+    grid-template: repeat(auto-fit,minmax(400px,0.8fr))/repeat(auto-fit,minmax(400px,0.8fr));
     gap: 30px;
     padding-top: 30px;
+    margin-bottom: 30px;
+    justify-content: center;
 }
 
 #sub-service >div{
@@ -116,4 +118,21 @@ h3{
 }
 a:hover{
     border-bottom:1px solid black;
+}
+@media (max-width:1300px) {
+    #navBar{
+        display: none;
+    }
+    html{
+        width: 100vw;
+    }
+    body{
+        display: grid;
+        grid-template: 1fr/1fr;
+        width:100vw;
+    }
+    /* #sub-service{
+        display: grid;
+        grid-template: repeat(2,minmax(450px,1fr))/1fr 1fr 1fr;
+    } */
 }
