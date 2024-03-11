@@ -122,3 +122,6 @@ button:hover{
     background-color: #FB8500;
     cursor: pointer;
 }
+label::after{
+    content: '*';
+}

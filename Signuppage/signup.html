@@ -6,6 +6,7 @@
     <title>Sign up</title>
     <link rel="stylesheet" href="../reset.css">
     <link rel="stylesheet" href="signup.css">
+    <script src="signup.js" defer></script>
 </head>
 <body>
     <div id="navBar">
@@ -23,26 +24,27 @@
         <form action="">
             <div>
                 <label for="fullname">Fullname:</label>
-                <input type="text" id="fullname" placeholder="Type in your fullname">
+                <input type="text" id="fullname" placeholder="Type in your fullname" minlength="5" required>
             </div>
             <div>
                 <label for="email">Email:</label>
-                <input type="email" id="email" placeholder="Type in your email">
+                <input type="email" id="email" placeholder="Type in your email" required>
             </div>
             <div>
                 <label for="username">username:</label>
-                <input type="text" id="fusername" placeholder="Type in your username">
+                <input type="text" id="username" placeholder="Type in your username" required>
             </div>
             <div>
                 <label for="password">Password:</label>
-                <input type="password" id="Password" placeholder="Type in your password">
+                <input type="password" id="Password" placeholder="Type in your password" required>
             </div>
             <div>
                 <label for="co-password">Confirm password:</label>
-                <input type="password" id="co-password" placeholder="retype in your password">
+                <input type="password" id="co-password" placeholder="retype in your password" required>
             </div>
             <button type="submit">Signup</button>
         </form>
+        <div id="error"></div>
         <p>Already have an account?<a href="../loginPage/login.html">Login</a></p>
 </body>
 </html>
