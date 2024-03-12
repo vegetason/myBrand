@@ -6,6 +6,7 @@
     <title>Contact me</title>
     <link rel="stylesheet" href="../reset.css">
     <link rel="stylesheet" href="contact.css">
+    <script src="contact.js" defer></script>
 </head>
 <body>
     <div id="navBar">
@@ -40,17 +41,21 @@
             </div>
             <div>
                 <h2>SEND ME AN EMAIL:</h2>
-                <form action="">
+                <form action="" method="">
                     <div>
-                        <input type="text" placeholder="name">
+                        <input type="text" placeholder="name" id="name">
+                        <div id="nameText"></div>
                     </div>
                     <div>
-                        <input type="email" placeholder="email">
+                        <input type="text" placeholder="email" id="email">
+                        <div id="emailText"></div>
                     </div>
                     <div>
                         <textarea name="message" id="messages" cols="70" rows="10" placeholder="message"></textarea>
+                        <div id="characters"></div>
+                        <div id="messagetext"></div>
                     </div>
-                    <button>Send</button>
+                    <button type="submit">Send</button>
                 </form>
             </div>
             </div>
