@@ -1,0 +1,72 @@
+*{
+    border: 1px solid blue;
+}
+body{
+    display: grid;
+    grid-template: 1fr 5fr/1fr 3fr 1fr;
+    grid-template-areas: 'nav header header'
+    'nav projects other';
+    min-height: 100vh;
+    gap: 20px;
+}
+#navBar{
+    grid-area: 1/1/2/2;
+    display: grid;
+    grid-template: 300px repeat(7,75px)/1fr;
+    background-color: #DFE0DF;
+    padding-bottom: 100px;
+    grid-area: nav;
+}
+#navBar a{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    justify-content: center;
+    font-weight: 600;
+}
+#navBar a:hover{
+    color: #FFB703;
+}
+#yourProjects >div{
+    grid-area: projects;
+    display: grid;
+    grid-template: repeat(auto-fit,minmax(400px,1fr))/repeat(auto-fit,minmax(360px,1fr));
+    gap: 20px;
+    height: auto;
+    grid-auto-rows:minmax(400px,1fr) ;}
+#other{
+    grid-area: other;
+    display: grid;
+    grid-template: 1fr 0.6fr/1fr;
+    gap: 20px;
+}
+/* #performance{
+    grid-area: performance;
+}
+#top-comments{
+    grid-area: comments;
+} */
+#header{
+    grid-area: header;
+}
+img{
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+h1{
+    font-size: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: 800;
+    height: 50px;
+}
+h3{
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

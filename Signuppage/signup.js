@@ -1,14 +1,3 @@
-function createUser(Fullname,username,email,password,copassword){
-    this.Fullname=Fullname;
-    this.username=username;
-    this.email=email;
-    this.password=password;
-    this.copassword=copassword;
-    return {
-        Fullname,username,email,pass,copass
-    }
-}
-let users=[];
 let form=document.querySelector('form');
 let FullnameTExt=document.querySelector('#fullnametext');
 let emailText=document.querySelector('#emailText');
@@ -16,12 +5,13 @@ let usernameText=document.querySelector('#usernameText')
 let passwordText=document.querySelector('#passwordText')
 let copasswordText=document.querySelector('#copassText')
 form.addEventListener('submit',(e)=>{
-    e.preventDefault();
     let password=document.getElementById('Password').value;
     let copassword=document.getElementById('co-password').value;
     let Fullname=document.getElementById('fullname').value;
     let username=document.getElementById('username').value;
     let email=document.getElementById('email').value;
+    if(Fullname===''||Fullname===null||Fullname.match(/[^A-Za-z\s]/g)!==null||email.match( /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g)===null||email===""||email===null||username.length<10 ||username.length>20||username.match(/\W/g)!==null||username===''||username===null||password.length<=8||password.match(/['"$/ ]/g)!=null||password.match(/[0-9]/g)===null||password.match( /[^a-zA-Z0-9'"\/$]/g)===null||password.length>15||password===''||password==='null'||password!==copassword){
+        e.preventDefault();
     // let user=createUser(Fullname,username,pass,copass)
     // users.push(user)
     console.log(password)
@@ -29,6 +19,10 @@ form.addEventListener('submit',(e)=>{
         if(Fullname.match(/[^A-Za-z\s]/g)!==null){
             FullnameTExt.textContent='Full name cannot include characters which are not letters and space'
             FullnameTExt.style.color='red'
+        }
+        else{
+            FullnameTExt.textContent='Full name approved'
+            FullnameTExt.style.color='green'
         }
     }
     else if(Fullname===''){
@@ -62,6 +56,10 @@ form.addEventListener('submit',(e)=>{
             usernameText.textContent='username cannot include characters which are not letters and numbers'
             usernameText.style.color='red'
         }
+        else{
+            usernameText.textContent='username approved'
+            usernameText.style.color='green'
+        }
     }
     else if(username===''){
         usernameText.textContent='username cannot be empty'
@@ -69,7 +67,7 @@ form.addEventListener('submit',(e)=>{
     }
 
     if(password!==''){
-        if(password.length<=6){
+        if(password.length<=8){
             passwordText.textContent='password cannot go under 8 characters';
             passwordText.style.color='red';
         }
@@ -112,6 +110,28 @@ form.addEventListener('submit',(e)=>{
     else if(copassword===''){
         copasswordText.textContent=`password cannot be empty `;
         copasswordText.style.color='red';
+    }
+    }
+    else if(Fullname!==''&&Fullname!==null&&Fullname.match(/[^A-Za-z\s]/g)===null&&email.match( /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g)!==null&&email!==""&&email!==null&&username.length>10 &&username.length<20&&username.match(/\W/g)===null&&username!==''&&username!==null&&password.length>=8&&password.match(/['"$/ ]/g)===null&&password.match(/[0-9]/g)!==null&&password.match( /[^a-zA-Z0-9'"\/$]/g)!==null&&password.length<15&&password!==''&&password!=='null'&&password===copassword){
+        let password=document.getElementById('Password').value;
+        let Fullname=document.getElementById('fullname').value;
+        let username=document.getElementById('username').value;
+        let email=document.getElementById('email').value;
+        let user_records=new Array();
+        user_records = JSON.parse(localStorage.getItem("users"))?JSON.parse(localStorage.getItem("users")):[];
+        if(user_records.some((v)=>{
+            return v.email == email
+        })){
+            alert("duplicate email")
+        }
+        else{
+            user_records.push({
+                "username":username,
+                "email":email,
+                "password":password,
+            })
+            localStorage.setItem("users",JSON.stringify(user_records));
+        }
     }
 
     // console.log(user.copass,user.pass,user.Fullname,user.username,users)

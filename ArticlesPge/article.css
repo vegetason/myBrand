@@ -55,6 +55,7 @@ img[alt='Logo']{
 
 #articles img:hover{
     box-shadow: 10px 10px 15px black;
+    cursor: pointer;
 }
 
 #articles >:last-child{
@@ -134,15 +135,6 @@ dialog >div >div{
 }
 dialog >p{
     font-size: 18px;
-}
-textarea{
-    border: 0;
-    border-bottom: 2px solid black;
-    font-size: 18px;
-    display: flex;
-    justify-content: center;
-    padding-top: 20px;
-    min-height: 50px;
 }
 #send:hover{
     border-bottom: 1px solid black;

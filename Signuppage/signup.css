@@ -86,15 +86,18 @@ form{
 form >div{
     display: flex;
     flex-direction: column;
-    height: 100px;
+    height: 140px;
 }
 input{
-    height: 50px;
+    height: 70px;
     border: 0;
-    border-bottom: 1px solid black;
+    /* border-bottom: 1px solid black; */
     padding-left: 30px;
     font-size: 18px;
     margin-top: 20px;
+    background-color: #DFE0DF;
+    border-radius: 10px;
+    margin-bottom: 6px;
 }
 label{
     font-size: 20px;
