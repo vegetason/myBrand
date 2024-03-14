@@ -1,13 +1,11 @@
-*{
-    border: 1px solid blue;
-}
 body{
     display: grid;
-    grid-template: 1fr 5fr/1fr 3fr 1fr;
+    grid-template: 300px 1fr/1fr 3fr 1fr;
     grid-template-areas: 'nav header header'
     'nav projects other';
     min-height: 100vh;
     gap: 20px;
+    width: max(1050px,100vw);
 }
 #navBar{
     grid-area: 1/1/2/2;
@@ -31,15 +29,32 @@ body{
 #yourProjects >div{
     grid-area: projects;
     display: grid;
-    grid-template: repeat(auto-fit,minmax(400px,1fr))/repeat(auto-fit,minmax(360px,1fr));
+    grid-template: repeat(auto-fit,minmax(300px,1fr))/repeat(auto-fit,minmax(360px,1fr));
     gap: 20px;
     height: auto;
-    grid-auto-rows:minmax(400px,1fr) ;}
+    grid-auto-rows:minmax(300px,1fr) ;}
 #other{
     grid-area: other;
     display: grid;
-    grid-template: 1fr 0.6fr/1fr;
+    grid-template: 500px 500px/1fr;
     gap: 20px;
+}
+
+#other >:first-child{
+    display: grid;
+    grid-template: 50px repeat(3,1fr)/1fr;
+}
+
+#other >:first-child >div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+p{
+    height: 100%;
+    font-size: 18px;text-align: center;
+    padding-top: 30px;
+    /* border-bottom: 1px solid rgb(176, 173, 173); */
 }
 /* #performance{
     grid-area: performance;
@@ -49,6 +64,87 @@ body{
 } */
 #header{
     grid-area: header;
+    display: grid;
+    grid-template: 1fr 2fr/1fr;
+    background-color: antiquewhite;
+}
+
+
+img{
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+#header1{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+#header1 input{
+    border-radius: 20px;
+    height: 30px;
+    width: 500px;
+    padding-left: 30px;
+}
+
+#header1 >:first-child{
+    display: flex;
+    gap: 15px;
+}
+
+#header1 >:last-child{
+    display: flex;
+    gap: 20px;
+}
+
+#header1 >:last-child > :nth-child(2){
+    height: 70px;
+    border-radius: 50%;
+}
+#header1 >:last-child >:first-child{
+    height: 30px;
+}
+img{
+    width: 100%;
+    height: 100%;
+}
+#header1 img,#header2 img{
+    border-radius: 50%;
+}
+#header2{
+    display: flex;
+    justify-content: space-between;
+}
+
+#header2 >:first-child{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+#header2 >:first-child >:first-child{
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+}
+#header2 >:first-child >:nth-child(2){
+    display: flex;
+    flex-direction: column;
+    padding-top: 40px;
+}
+#header2 >:nth-child(2){
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+h3{
+    font-size: 20px;
+    font-weight: 600;
+}
+h5{
+    font-size: 16px;
+    font-weight: 600;
 }
 img{
     width: 100%;
@@ -69,4 +165,70 @@ h3{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+#newContentToAdd{
+    width: 500px;
+    height: 300px;
+    border-radius: 25px;
+}
+#newContentToAdd::backdrop{
+    background-color: #ccd0cc;
+    opacity: 0.6;
+}
+#newContentToAdd >div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#newContentToAdd >div >div{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-self: stretch;
+}
+#newContentToAdd >div >div div{
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+a:hover{
+    border-bottom: 1px solid black;
+    color: #FFB703;
+    cursor: pointer;
+}
+button{
+    height: 50px;
+    width: 250px;
+    border-radius: 20px;
+    background-color: #FFB703;
+    font-size: 18px;
+}
+
+button:hover{
+    background-color: #FB8500;
+    cursor: pointer;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+span{
+    font-size: 20px;
+    font-weight: 600;
+}
+#messages h2{
+    font-size: 20px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    /* border-bottom: 1px solid black; */
 }

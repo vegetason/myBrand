@@ -147,3 +147,7 @@ form >:nth-child(2) a{
 }
 /* #loginSection img{
 } */
+form >a{
+    border: 0;
+    text-decoration: none;
+}
