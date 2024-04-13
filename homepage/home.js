@@ -11,3 +11,13 @@ navLinks.forEach(link=>{
         hamburger.classList.toggle('active');
     })
 })
+// let lists=document.querySelectorAll('li')
+// let a=document.querySelector('a');
+// let svg=document.querySelector('svg')
+// lists.forEach(li=>{
+//     li.addEventListener('mouseover',()=>{
+//         li.style.borderBottom='1px solid black';
+//         svg.style.fill='#FFB703'
+//         a.style.color='#FFB703'
+//     })
+// })  
