@@ -6,7 +6,7 @@ body{
     display: grid;
     grid-template: minmax(100vh,1fr)/minmax(300px,1fr) minmax(1000px,4fr);
     min-height: 100vh;
-    min-width:100vw;
+    width:100vw;
 }
 #navBar{
     grid-area: 1/1/2/2;
@@ -26,7 +26,7 @@ body{
 #navBar a:hover{
     color: #FFB703;
 }
-img[alt='Logo']{
+img[alt='LOgo']{
     border-radius: 50%;
     align-self: center;
     justify-self: center;
@@ -178,7 +178,220 @@ a:hover{
     transition: all 0.3s ease-in-out;
     background-color: black;
 }
-@media (max-width:1416px) {
+#about >:last-child p{
+    margin-right: 30px;
+}
+#contOfHamburger{
+    display: none;
+}
+#about >p{
+    padding: 20px;
+}
+@media (max-width:1280px){
+    body{
+        display: grid;
+        grid-template: 70px 1fr/1fr;
+        min-height: 100vh;
+        width:100vw;
+    }
+    #navBar{
+        display: flex;
+        justify-content: space-around;
+        align-content: center;
+        box-sizing: border-box;
+        padding: 0;
+    }
+    img[alt='LOgo']{
+        border-radius: 50%;
+        align-self: center;
+        justify-self: center;
+        width: 50px;
+        height: 50px;
+    }
+}
+@media(max-width:1390px){
+    #skills{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+    }
+    #about{
+        grid-template: 80px 50px 100px auto 1fr/1fr;
+    }
+}
+@media(max-width:1200px){
+    #about{
+        grid-template: 80px 50px 150px auto 1fr/1fr;
+    }
+    h1{
+        font-size: 40px;
+    }
+    h2{
+        font-size: 30px;
+    }
+}
+@media(max-width:1023px){
+    #about{
+        grid-template: 80px 50px 150px auto auto/1fr;
+    }
+    #about >:last-child{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    #about >:last-child >div >div{
+        height: 300px;
+    }
+}
+@media (max-width:920px){
+    #contOfHamburger{
+        display: flex; 
+        justify-content: space-between;
+        align-items: center;
+        background-color: #DFE0DF;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    #navBar{
+        display: none;
+    }
+    img[alt='LOgo']{
+        display: none;
+    }
+
+    img[alt='Logo']{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #DFE0DF;
+        cursor: pointer;
+        width: 50px;
+        height: 50px;
+    }
+    .hamburger.active{
+        display: flex;
+        justify-content: center;
+        position: fixed;
+        right: 60px;
+        height: 50px;
+        top: 20px;
+        background-color: white;
+        width: 50px;
+
+    }
+    .hamburger.active .bar:nth-child(2){
+        opacity: 0;
+    }
+    .hamburger.active .bar:nth-child(1){
+        transform: translateY(15px) rotate(45deg);
+    }
+    .hamburger.active .bar:nth-child(3){
+        transform: translateY(-15px) rotate(-45deg);
+    }
+    #navBar.active{
+        display: grid;
+        grid-template: repeat(7,75px)/1fr;
+        gap: 0;
+        position: fixed;
+        top: 0;
+        height:100%;
+        width: 300px;
+        padding-top: 20px;
+    }
+}
+@media(max-width:580px){
+    #about{
+        display: grid;
+        grid-template: 80px 50px  200px auto 1fr/1fr;
+        padding-left: 30px;
+        padding-top: 50px;
+        padding-right: 30px;
+        padding-bottom: 30px;
+        gap: 20px;
+    }
+    #about >p{
+        height: 200px;
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    #skills{
+        margin-top: 150px;
+    }
+    #skills >:first-child{
+        display: grid;
+        grid-template: repeat(7,50px)/250px;
+    }
+    #skills >:first-child >:nth-child(6){
+        grid-area:6/1/7/2;
+    }
+    #skills >:first-child >:nth-child(7){
+        grid-area:7/1/8/2;
+    }
+    #about{
+        display: grid;
+        grid-template: 80px 50px 100px auto 1fr/1fr;
+    }
+    #skills >:nth-child(2){
+        display: grid;
+        grid-template: repeat(4,50px)/400px;
+        gap: 10px;
+    }
+    #skills >:nth-child(2) >div >:first-child {
+        width: 394px;
+    }
+    .white-bar{
+        width:400px;
+    }
+    .orange-bar1{
+        width: 300px;
+    }
+    .orange-bar2{
+        width: 230px;
+    }
+    .orange-bar3{
+        width: 350px;
+    }
+    #about >:last-child >div >div{
+        height: 400px;
+    }
+}
+@media (max-width:468px){
+    #skills >:nth-child(2) >div >:first-child {
+        width: 294px;
+    }
+    #skills >:nth-child(2) >div{
+        justify-self: center;
+    }
+    .white-bar{
+        width:300px;
+    }
+    .orange-bar1{
+        width: 200px;
+    }
+    .orange-bar2{
+        width: 130px;
+    }
+    .orange-bar3{
+        width: 250px;
+    }
+    h1{
+        font-size: 25px;
+    }
+    h2{
+        font-size: 20px;
+    }
+    /* #about >:last-child >div >div{
+        height: 200px;
+        width: 200px;
+    } */
+}
+/* @media (max-width:1416px) {
     #navBar{
         display: none;
     }
@@ -239,7 +452,7 @@ a:hover{
 #about >:last-child >div >div{
     height: 300px;
 }
-}
+} */
 @media(max-width:733px){
     h2{
         font-size: 32px;
@@ -253,7 +466,7 @@ a:hover{
         font-size: 20px;
     }
 }
-@media(max-width:582px){
+@media (max-width:582px){
     h2{
         font-size: 25px;
     }

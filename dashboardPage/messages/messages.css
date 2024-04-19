@@ -1,0 +1,48 @@
+html{
+    min-height: 100vh;
+    width: 100vw;
+}
+body{
+    display: grid;
+    grid-template: minmax(100vh,1fr)/minmax(300px,1fr) minmax(1000px,4fr);
+    min-height: 100vh;
+    width:100vw;
+    margin: 0;
+}
+#navBar{
+    grid-area: 1/1/2/2;
+    display: grid;
+    grid-template: 300px repeat(7,75px)/1fr;
+    background-color: #DFE0DF;
+    padding-bottom: 100px;
+}
+#navBar a{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    justify-content: center;
+    font-weight: 600;
+}
+#navBar a:hover{
+    color: #FFB703;
+}
+img[alt='Logo']{
+    border-radius: 50%;
+    align-self: center;
+    justify-self: center;
+}
+.hamburger{
+    display: none;
+}
+#containerOfMessages{
+    display: grid;
+    grid-template: 100px 1fr 600px/1fr;
+    padding-left: 30px;
+    gap: 30px;
+}
+#container{
+display: flex;
+gap: 30px;
+flex-wrap: wrap;
+}

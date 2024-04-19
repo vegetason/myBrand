@@ -28,34 +28,51 @@ body{
 #navBar a:hover{
     color: #FFB703;
 }
-img[alt='Logo']{
+img[alt='LOgo']{
     border-radius: 50%;
     align-self: center;
     justify-self: center;
 }
 #articles{
     display: grid;
-    grid-template: 100px 0.8fr 0.2fr/1fr;
+    grid-template: 100px auto 0.2fr/1fr;
     padding-left: 25px;
     padding-top: 30px;
+    gap: 30px;
 }
-#articles >:nth-child(2){
-    display: grid;
-    grid-template: 1fr 1fr/1fr 1fr 1fr;
-    gap: 20px;
-    padding-top: 30px;
+#container{
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    }
+#container >div{
+    width: 400px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #DFE0DF;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 5px 5px 10px black;
 }
 
-#articles img{
+#container >div:hover{
+    box-shadow: 10px 10px 15px  black;
+}
+#container >div img{
     width: 100%;
-    height: 100%;
-    border-radius: 30px;
-    box-shadow: 5px 5px 15px black;
+    height: 300px;
 }
 
-#articles img:hover{
-    box-shadow: 10px 10px 15px black;
-    cursor: pointer;
+#container >div >:nth-child(3){
+    height: 100px;
+    font-size: 18px;
+    padding: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #articles >:last-child{
@@ -87,6 +104,9 @@ h1{
     justify-content: center;
     align-items: flex-start;
     font-weight: 800;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 
@@ -118,34 +138,149 @@ h3{
 a:hover{
     border-bottom:1px solid black;
 }
-dialog{
-    gap: 30px;
-    width: 600px;
-    align-self: center;
-    justify-self: center;
+#contOfHamburger{
+    display: none;
 }
-dialog >div{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+
+.hamburger{
+    display: none;
 }
-dialog >div >div{
-    display: flex;
-    gap: 20px;
+
+.bar{
+    display: block;
+    width: 50px;
+    height: 5px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: black;
 }
-dialog >p{
-    font-size: 18px;
+@media (max-width:1280px) {
+    /* #navBar{
+        display: none;
+    } */
+    html{
+        width: 100vw;
+    }
+    body{
+        display: grid;
+        grid-template: 70px 1fr/1fr;
+        width:100vw;
+    }
+    #navBar{
+        display: flex;
+        background-color: #DFE0DF;
+        padding-bottom: 0;
+        justify-content: space-around;
+        align-items: center;
+    }
+    img[alt='LOgo']{
+        width: 50px;
+        height: 50px;
+    }
+    /* .hamburger {
+        display: block;
+        background-color: #DFE0DF;
+        cursor: pointer;
+        position: fixed;
+        top: 30px;
+        left: 30px;
+    }
+    .hamburger.active{
+        display: block;
+        position: fixed;
+        left: 300px;
+        height: 100vh;
+        top: 0;
+    }
+    .hamburger.active .bar:nth-child(2){
+        opacity: 0;
+    }
+    .hamburger.active .bar:nth-child(1){
+        transform: translateY(10px) rotate(45deg);
+    }
+    .hamburger.active .bar:nth-child(3){
+        transform: translateY(-10px) rotate(-45deg);
+    }
+    #navBar.active{
+        display: grid;
+        position: fixed;
+    } */
 }
-#send:hover{
-    border-bottom: 1px solid black;
-    cursor: pointer;
+@media (max-width:920px){
+    #contOfHamburger{
+        display: flex; 
+        justify-content: space-between;
+        align-items: center;
+        background-color: #DFE0DF;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    #navBar{
+        display: none;
+    }
+    img[alt='LOgo']{
+        display: none;
+    }
+    img[alt='Logo']{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #DFE0DF;
+        cursor: pointer;
+        width: 50px;
+        height: 50px;
+    }
+    .hamburger.active{
+        display: flex;
+        justify-content: center;
+        position: fixed;
+        right: 60px;
+        height: 50px;
+        top: 20px;
+        background-color: white;
+        width: 50px;
+
+    }
+    .hamburger.active .bar:nth-child(2){
+        opacity: 0;
+    }
+    .hamburger.active .bar:nth-child(1){
+        transform: translateY(15px) rotate(45deg);
+    }
+    .hamburger.active .bar:nth-child(3){
+        transform: translateY(-15px) rotate(-45deg);
+    }
+    #navBar.active{
+        display: grid;
+        grid-template: repeat(7,75px)/1fr;
+        gap: 0;
+        position: fixed;
+        top: 0;
+        height:100%;
+        width: 300px;
+        padding-top: 20px;
+    }
+    #container h1{
+        font-size: 25px;
+    }
 }
-form{
-    display: flex;
-    flex-direction: column;
+@media(max-width:565px){
+    input{
+        width: 400px;
+    }
 }
-#send{
-    align-self: flex-end;
-    margin-top: 0;
-    padding-top: 0;
+@media(max-width:565px){
+    input{
+        width: 300px;
+    }
+    #container >div{
+        width: 300px;
+    }
 }

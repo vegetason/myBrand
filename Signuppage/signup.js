@@ -5,6 +5,7 @@ let usernameText=document.querySelector('#usernameText')
 let passwordText=document.querySelector('#passwordText')
 let copasswordText=document.querySelector('#copassText')
 form.addEventListener('submit',(e)=>{
+    e.preventDefault()
     let password=document.getElementById('Password').value;
     let copassword=document.getElementById('co-password').value;
     let Fullname=document.getElementById('fullname').value;
@@ -112,35 +113,30 @@ form.addEventListener('submit',(e)=>{
         copasswordText.style.color='red';
     }
     }
-    else if(Fullname!==''&&Fullname!==null&&Fullname.match(/[^A-Za-z\s]/g)===null&&email.match( /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g)!==null&&email!==""&&email!==null&&username.length>10 &&username.length<20&&username.match(/\W/g)===null&&username!==''&&username!==null&&password.length>=8&&password.match(/['"$/ ]/g)===null&&password.match(/[0-9]/g)!==null&&password.match( /[^a-zA-Z0-9'"\/$]/g)!==null&&password.length<15&&password!==''&&password!=='null'&&password===copassword){
-        let password=document.getElementById('Password').value;
-        let Fullname=document.getElementById('fullname').value;
-        let username=document.getElementById('username').value;
-        let email=document.getElementById('email').value;
-        let user_records=new Array();
-        user_records = JSON.parse(localStorage.getItem("users"))?JSON.parse(localStorage.getItem("users")):[];
-        if(user_records.some((v)=>{
-            return v.email == email
-        })){
-            alert("duplicate email")
-        }
-        else{
-            user_records.push({
-                "username":username,
-                "email":email,
-                "password":password,
-            })
-            localStorage.setItem("users",JSON.stringify(user_records));
-        }
-    }
 
-    // console.log(user.copass,user.pass,user.Fullname,user.username,users)
-    // if(user.username.length<=5){
-    //     errorMess.textContent='Username can\'t be less than 5 characters'
-    // }
-    // if(user.pass<=6){
-    //     errorMess.textContent='password cannot go u'
-    // }
+    else if(Fullname!==''&&Fullname!==null&&Fullname.match(/[^A-Za-z\s]/g)===null&&email.match( /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g)!==null&&email!==""&&email!==null&&username.length>10 &&username.length<20&&username.match(/\W/g)===null&&username!==''&&username!==null&&password.length>=8&&password.match(/['"$/ ]/g)===null&&password.match(/[0-9]/g)!==null&&password.match( /[^a-zA-Z0-9'"\/$]/g)!==null&&password.length<15&&password!==''&&password!=='null'&&password===copassword){
+        let feedBack=document.querySelector('#feedback');
+        e.preventDefault()
+        console.log(email,password,username)
+        fetch('https://mybrand-backend-emhu.onrender.com/auth/register',{
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({
+                email:`${email}`,
+                password:`${password}`,
+                username:`${username}`
+            })
+    
+        })
+        .then(res=>{
+            if(res.status===200) {
+                let inputs=document.querySelectorAll('input');
+                inputs.forEach(input=>input.textContent='')
+            }
+            console.log(res)
+        })
+        .catch(error=>{console.log(error)})
+    }
 })
 // test=document.querySelector('textarea')
 // test.addEventListener('input',()=>{
@@ -152,3 +148,16 @@ form.addEventListener('submit',(e)=>{
 //     }
 //     console.log(test.value.length)
 // })
+let hamburger=document.querySelector('.hamburger');
+let navLinks=document.querySelectorAll('.navLink');
+let navBar=document.querySelector('#navBar');
+hamburger.addEventListener('click',()=>{
+    hamburger.classList.toggle('active');
+    navBar.classList.toggle('active');
+})
+navLinks.forEach(link=>{
+    link.addEventListener('click',()=>{
+        navBar.classList.toggle('active');
+        hamburger.classList.toggle('active');
+    })
+})

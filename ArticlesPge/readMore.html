@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Articles</title>
-    <link rel="stylesheet" href="../reset.css">
-    <link rel="stylesheet" href="article.css">
-    <script src="article.js" defer></script>
+    <link rel="stylesheet" href="../ArticlesPge/readMore.css">
+    <script src="readMore.js" defer></script>
 </head>
 <body>
     <div id="navBar">
@@ -27,20 +26,17 @@
         </div>
         <img src="../images/logo copy.png" alt="Logo" width="300px"height="300px">
     </div>
-    <div id="articles">
-        <h1>Articles:
-            <div style="margin-top: 5px;width:100px;height:5px; background-color: #FFB703;border-radius: 3px;"></div>
-            <div style="width:200px;height:5px; background-color: #FFB703;border-radius: 3px;"></div>
-        </h1>
+    <div id="theBlog">
+        <h1></h1>
         <div>
-            <div id="container">
-            </div>
+            <img src="" alt="" id="image">
         </div>
-        <div>
-            <h4>Want to subscribe to my articles?</h4>
-            <h5>Enter your Email:</h5>
-            <input type="email" placeholder="Email">
-            <button>Subscribe</button>
+        <div id="content"></div>
+        <div id="commentSection"><textarea name="comment" placeholder="comment here"></textarea>
+            <button id="comment">Comment</button>
+        </div>
+        <div id="commentsContainer">
+            <h1>Comments:</h1>
         </div>
     </div>
 </body>
