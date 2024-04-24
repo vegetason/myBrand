@@ -38,7 +38,7 @@ fetch('https://mybrand-backend-emhu.onrender.com/blogs',
     let editBtn=document.querySelector('#editbtn');
     editBtn.addEventListener('click',(e)=>{
         e.preventDefault()
-        fetch(`https://mybrand-backend-emhu.onrender.com/updateBlog/${idValue}`,{
+        fetch(`http://localhost:8080/updateBlog/${idValue}`,{
 
             method:"PATCH",
             headers:{"Content-Type":"application/json"},

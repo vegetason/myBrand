@@ -84,7 +84,7 @@ fetch('https://mybrand-backend-emhu.onrender.com/blogs')
         const token = localStorage.getItem('token');
     
       // Assuming you need to make a separate DELETE request to the API
-      fetch(`https://mybrand-backend-emhu.onrender.com/${_id}`, {
+      fetch(`hhttps://mybrand-backend-emhu.onrender.com/deleteBlog/${_id}`, {
           method: 'delete',
           headers: {
               'Authorization': `Bearer ${token}`,
@@ -117,3 +117,7 @@ fetch('https://mybrand-backend-emhu.onrender.com/blogs')
             hamburger.classList.toggle('active');
         })
     })
+    const decode = token => decodeURIComponent(atob(token.split('.')[1].replace('-', '+').replace('_', '/')).split('').map(c => `%${('00' + c.charCodeAt(0).toString(16)).slice(-2)}`).join(''));
+    const token = localStorage.getItem('token');
+
+    console.log(decode(token))

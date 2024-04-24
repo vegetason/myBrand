@@ -27,7 +27,7 @@ body{
 #navBar a:hover{
     color: #FFB703;
 }
-img[alt='Logo']{
+img[alt='LOgo']{
     border-radius: 50%;
     align-self: center;
     justify-self: center;
@@ -37,7 +37,7 @@ img[alt='Logo']{
 }
 #containerOfMessages{
     display: grid;
-    grid-template: 100px 1fr 600px/1fr;
+    grid-template: 100px 1fr/1fr;
     padding-left: 30px;
     gap: 30px;
 }
@@ -45,4 +45,21 @@ img[alt='Logo']{
 display: flex;
 gap: 30px;
 flex-wrap: wrap;
+}
+table{
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 30px;
+    margin-right: 20px;
+}
+tr{
+    border: 1px solid black;
+}
+td{
+    border: 1px solid black;
+    text-align: center;
+}
+th{
+    border: 1px solid black;
 }

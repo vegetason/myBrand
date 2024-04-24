@@ -5,17 +5,33 @@ let commentsContainer=document.querySelector('#commentsContainer')
 
 var url = window.location.href;
 
-function getParameterByName(name, url) {
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
-}
+// function getParameterByName(name, url) {
+//     name = name.replace(/[\[\]]/g, "\\$&");
+//     var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+//         results = regex.exec(url);
+//     if (!results) return null;
+//     if (!results[2]) return '';
+//     return decodeURIComponent(results[2].replace(/\+/g, " "));
+// }
 
-// Retrieve the id parameter
-var idValue = getParameterByName('id', url);
+// // Retrieve the id parameter
+// var idValue = getParameterByName('id', url);
+
+// Retrieve the query parameter from the URL
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const encodedIds = urlParams.get('ids');
+
+// Decode the query parameter
+const decodedIds = decodeURIComponent(encodedIds);
+
+// Split the decoded IDs based on the delimiter
+const [id, userIdData] = decodedIds.split('|');
+
+// Further decode the userId from JSON format
+const userIdObj = JSON.parse(userIdData);
+const userId = userIdObj.userId;
+
 
 fetch('https://mybrand-backend-emhu.onrender.com/blogs')
     .then(res=>{
@@ -23,7 +39,7 @@ fetch('https://mybrand-backend-emhu.onrender.com/blogs')
             const blogs=data;
             console.log(blogs)
             for(let i=0;i<blogs.length;i++){
-                if(blogs[i]._id===idValue){
+                if(blogs[i]._id===id){
                     image.setAttribute('src',`${blogs[i].imageUrl}`)
                     content.textContent=`${blogs[i].body}`
                     title.textContent=`${blogs[i].title}`
@@ -32,7 +48,9 @@ fetch('https://mybrand-backend-emhu.onrender.com/blogs')
                     comment.forEach(n=>{
                         let comments=document.createElement('div')
                         let theDiv=document.createElement('div');
-                        let time=document.createElement('div');
+                        let time=document.createElement('div')
+                        let likesNbr=document.querySelector('#likesNumber')
+                        likesNbr.textContent=`Likes: ${blogs[i].likes.length}`
                         theDiv.textContent=`${n.text}`
                         time.textContent=`Created at:${n.createdAt}`
                         comments.append(theDiv,time)
@@ -57,3 +75,67 @@ fetch('https://mybrand-backend-emhu.onrender.com/blogs')
             hamburger.classList.toggle('active');
         })
     })
+    console.log(id,userId)
+    let commentBtn=document.querySelector('#comment')
+    commentBtn.addEventListener('click',()=>{
+        let commentText=document.querySelector('textarea').value;
+        fetch(`https://mybrand-backend-emhu.onrender.com/createComment/${id}/user/${userId}`,{
+            method:'post',
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({
+                text:`${commentText}`
+            })
+        }).then(res=>{
+            console.log(res)
+            if (res.status===200) window.location.reload()
+        })
+    })
+    let likeBtn=document.querySelector('#like');
+    likeBtn.addEventListener('click',()=>{
+        fetch(`http://localhost:8080/like/${id}/user/${userId}`,{
+            method:'post',
+            headers:{"Content-Type":"application/json"},
+        }).then(res=>{
+            if(res.status===200) window.location.reload();
+            else alert('Error occured')
+        })
+    })
+    const getUserIdFromToken = token => {
+        const decodedToken = JSON.parse(decodeURIComponent(atob(token.split('.')[1].replace('-', '+').replace('_', '/'))));
+        return decodedToken.userId || null;
+    };
+    
+    const token = localStorage.getItem('token');
+    if(token!==null){
+        const userId = getUserIdFromToken(token);
+    console.log(userId);
+        fetch('hhttps://mybrand-backend-emhu.onrender.com/users')
+    .then(res=>{
+        res.json().then(data=>{
+            console.log(data)
+            const users=data;
+            users.forEach(user=>{
+    
+                if (userId!=='661f937a29bd0474b48feab4' && userId===user._id){
+                    let delLink=document.createElement('a')
+                    let delTitle=document.createElement('h3')
+                    delTitle.textContent='Delete Account'
+                    delLink.appendChild(delTitle)
+                    navBar.appendChild(delLink)
+                    delLink.addEventListener('click',()=>{
+                        fetch(`https://mybrand-backend-emhu.onrender.com/users/${user._id}`,{
+                            method:'delete',
+                            headers:{"Content-Type":"application/json"}
+                        })
+                        .then(res=>{
+                            if(res.status===200){
+                                localStorage.clear();
+                                window.location.reload();
+                            }
+                        })
+                    })
+                }
+            })
+        })
+    })
+    }
