@@ -1,7 +1,22 @@
 let body=document.querySelector('body')
 let submitButton=document.getElementById('done')
 let theBlogContainer=document.querySelector('#container');
-fetch('https://mybrand-backend-emhu.onrender.com/blogs')
+const token = localStorage.getItem('token');
+const decode = token => decodeURIComponent(atob(token.split('.')[1].replace('-', '+').replace('_', '/')).split('').map(c => `%${('00' + c.charCodeAt(0).toString(16)).slice(-2)}`).join(''));
+
+
+let userId=localStorage.getItem('userId');
+if(token===null || userId!=='661f937a29bd0474b48feab4'){
+    let html=document.querySelector('html')
+    html.setAttribute('style','display:none;')
+    window.location.href='../loginPage/login.html';
+    localStorage.clear();
+}
+else{
+    let html=document.querySelector('html')
+    html.removeAttribute('style')
+}
+fetch('http://localhost:8080/blogs')
     .then(res=>{
         res.json().then(data=>{
             const blogs=data;
@@ -41,9 +56,12 @@ fetch('https://mybrand-backend-emhu.onrender.com/blogs')
     });
     submitButton.addEventListener('click',(e)=>{
         e.preventDefault();
-        fetch(`https://mybrand-backend-emhu.onrender.com/createBlog`,{
+        fetch(`http://localhost:8080/createBlog`,{
             method:'POST',
-            headers:{"Content-Type":"application/json"},
+            headers:{
+                "Content-Type":"application/json",
+                'Authorization': `Bearer ${token}`
+            },
             body:JSON.stringify({
                 title:document.getElementById('title').value,
                 imageUrl:document.getElementById('imageUrl').value,
@@ -84,7 +102,7 @@ fetch('https://mybrand-backend-emhu.onrender.com/blogs')
         const token = localStorage.getItem('token');
     
       // Assuming you need to make a separate DELETE request to the API
-      fetch(`hhttps://mybrand-backend-emhu.onrender.com/deleteBlog/${_id}`, {
+      fetch(`http://localhost:8080/deleteBlog/${_id}`, {
           method: 'delete',
           headers: {
               'Authorization': `Bearer ${token}`,
@@ -117,7 +135,7 @@ fetch('https://mybrand-backend-emhu.onrender.com/blogs')
             hamburger.classList.toggle('active');
         })
     })
-    const decode = token => decodeURIComponent(atob(token.split('.')[1].replace('-', '+').replace('_', '/')).split('').map(c => `%${('00' + c.charCodeAt(0).toString(16)).slice(-2)}`).join(''));
-    const token = localStorage.getItem('token');
-
-    console.log(decode(token))
+    let logOut=document.querySelector('#logout');
+    logOut.addEventListener('click',()=>{
+        localStorage.clear();
+    })

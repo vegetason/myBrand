@@ -76,6 +76,7 @@ p a{
     margin-top: 100px;
     margin-right: 300px;
     justify-content: center;
+    margin-bottom: 30px;
     
 }
 form{
@@ -302,40 +303,21 @@ label::after{
     }
 }
 
-@media(max-width:565px){
-    /* input{
-        width: 400px;
-    } */
-    form >div{
-        width: 450px;
+@media(max-width:570px){
+    #signup{
+        width: 90%;
+        justify-self: center;
     }
     form{
-        align-self: center
-    };
-}
-@media(max-width:521px){
-    /* input{
-        width: 300px;
-    } */
-    form >div,p,h1{
-        width: 400px;
-    }
-    #container >div{
-        width: 300px;
+        width: 100%;
     }
 }
-@media(max-width:465px){
-    /* input{
-        width: 300px;
-    } */
-    form >div,p,h1{
-        width: 300px;
+@media(max-width:320px){
+    p{
+        font-size: 18px;
     }
-    #container >div{
-        width: 300px;
-    }
-    
-    #afterForm{
-        width: 300px;
+    a{
+        font-size: 18px;
     }
 }
+

@@ -285,41 +285,49 @@ form >a{
         width: 300px;
         padding-top: 20px;
     }
+    body{
+        min-height: 120vh;
+    }
 }
 @media(max-width:565px){
     /* input{
         width: 400px;
     } */
-    form >div{
+    /* form >div{
         width: 450px;
     }
     form{
         align-self: center
+    }; */
+    #loginSection{
+        width: 90%;
+
+    justify-self: center
     };
+
 }
 @media(max-width:521px){
     /* input{
         width: 300px;
     } */
-    form >div{
-        width: 400px;
-    }
-    #container >div{
-        width: 300px;
-    }
 }
-@media(max-width:465px){
+@media(max-width:400px){
     /* input{
         width: 300px;
     } */
-    form >div{
-        width: 300px;
+    #loginSection a{
+        font-size: 16px;
     }
-    #container >div{
-        width: 300px;
+    p{
+        font-size: 18px;
     }
     
-    #afterForm{
-        width: 300px;
+}
+@media (max-width){
+    p{
+        font-size: 18px;
+    }
+    #loginSection a{
+        font-size: 15px;
     }
 }

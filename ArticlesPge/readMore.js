@@ -2,7 +2,7 @@ let content=document.querySelector('#content');
 let title=document.querySelector('h1');
 let image=document.querySelector('#image');
 let commentsContainer=document.querySelector('#commentsContainer')
-
+const token = localStorage.getItem('token');
 var url = window.location.href;
 
 // function getParameterByName(name, url) {
@@ -31,8 +31,10 @@ const [id, userIdData] = decodedIds.split('|');
 // Further decode the userId from JSON format
 const userIdObj = JSON.parse(userIdData);
 const userId = userIdObj.userId;
+if(userId===null) userId=0;
 
-
+let likesNbr=document.querySelector('#likesNumber');
+likesNbr.textContent=`Likes:0`
 fetch('https://mybrand-backend-emhu.onrender.com/blogs')
     .then(res=>{
         res.json().then(data=>{
@@ -43,14 +45,13 @@ fetch('https://mybrand-backend-emhu.onrender.com/blogs')
                     image.setAttribute('src',`${blogs[i].imageUrl}`)
                     content.textContent=`${blogs[i].body}`
                     title.textContent=`${blogs[i].title}`
+                    likesNbr.textContent=`Likes: ${blogs[i].likes.length}`
                     let comment= blogs[i].comment
                     console.log(blogs[i].comment)
                     comment.forEach(n=>{
                         let comments=document.createElement('div')
                         let theDiv=document.createElement('div');
                         let time=document.createElement('div')
-                        let likesNbr=document.querySelector('#likesNumber')
-                        likesNbr.textContent=`Likes: ${blogs[i].likes.length}`
                         theDiv.textContent=`${n.text}`
                         time.textContent=`Created at:${n.createdAt}`
                         comments.append(theDiv,time)
@@ -81,7 +82,10 @@ fetch('https://mybrand-backend-emhu.onrender.com/blogs')
         let commentText=document.querySelector('textarea').value;
         fetch(`https://mybrand-backend-emhu.onrender.com/createComment/${id}/user/${userId}`,{
             method:'post',
-            headers:{"Content-Type":"application/json"},
+            headers:{
+                "Content-Type":"application/json",
+                'Authorization': `Bearer ${token}`
+            },
             body:JSON.stringify({
                 text:`${commentText}`
             })
@@ -92,9 +96,12 @@ fetch('https://mybrand-backend-emhu.onrender.com/blogs')
     })
     let likeBtn=document.querySelector('#like');
     likeBtn.addEventListener('click',()=>{
-        fetch(`http://localhost:8080/like/${id}/user/${userId}`,{
+        fetch(`https://mybrand-backend-emhu.onrender.com/like/${id}/user/${userId}`,{
             method:'post',
-            headers:{"Content-Type":"application/json"},
+            headers:{
+                "Content-Type":"application/json",
+                'Authorization': `Bearer ${token}`
+            },
         }).then(res=>{
             if(res.status===200) window.location.reload();
             else alert('Error occured')
@@ -105,11 +112,10 @@ fetch('https://mybrand-backend-emhu.onrender.com/blogs')
         return decodedToken.userId || null;
     };
     
-    const token = localStorage.getItem('token');
     if(token!==null){
         const userId = getUserIdFromToken(token);
     console.log(userId);
-        fetch('hhttps://mybrand-backend-emhu.onrender.com/users')
+        fetch('https://mybrand-backend-emhu.onrender.com/users')
     .then(res=>{
         res.json().then(data=>{
             console.log(data)
@@ -119,13 +125,25 @@ fetch('https://mybrand-backend-emhu.onrender.com/blogs')
                 if (userId!=='661f937a29bd0474b48feab4' && userId===user._id){
                     let delLink=document.createElement('a')
                     let delTitle=document.createElement('h3')
+                    let LogLink=document.createElement('a')
+                    let LogTitle=document.createElement('h3')
+                    LogTitle.textContent='Log Out',
+                    LogLink.setAttribute('href','../loginPage/login.html')
+                    LogLink.appendChild(LogTitle)
+                    navBar.appendChild(LogLink)
                     delTitle.textContent='Delete Account'
                     delLink.appendChild(delTitle)
                     navBar.appendChild(delLink)
+                    LogLink.addEventListener('click',()=>{
+                        localStorage.clear();
+                    })
                     delLink.addEventListener('click',()=>{
                         fetch(`https://mybrand-backend-emhu.onrender.com/users/${user._id}`,{
                             method:'delete',
-                            headers:{"Content-Type":"application/json"}
+                            headers:{
+                                "Content-Type":"application/json",
+                                'Authorization': `Bearer ${token}`
+                        }
                         })
                         .then(res=>{
                             if(res.status===200){

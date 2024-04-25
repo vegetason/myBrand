@@ -270,6 +270,14 @@ a:hover{
     #container h1{
         font-size: 25px;
     }
+    #articles{
+        width:90%;
+        padding: 0;
+        justify-self: center;
+    }
+    #articles >:last-child {
+        width: 100%;
+    }
 }
 @media(max-width:565px){
     input{
@@ -278,9 +286,10 @@ a:hover{
 }
 @media(max-width:565px){
     input{
-        width: 300px;
+        width: 85%;
     }
     #container >div{
         width: 300px;
+        box-sizing: border-box;
     }
 }

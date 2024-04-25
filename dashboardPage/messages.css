@@ -32,14 +32,28 @@ img[alt='LOgo']{
     align-self: center;
     justify-self: center;
 }
+button{
+    height: 50px;
+    width: 100px;
+    background-color: #FFB703;
+    font-size: 18px;
+}
+
+button:hover{
+    background-color: #FB8500;
+    cursor: pointer;
+}
 .hamburger{
     display: none;
 }
 #containerOfMessages{
     display: grid;
     grid-template: 100px 1fr/1fr;
-    padding-left: 30px;
+    justify-self: center;
+    padding-left: 20px;
+    padding-right: 20px;
     gap: 30px;
+    padding-bottom: 30px;
 }
 #container{
 display: flex;
@@ -62,4 +76,149 @@ td{
 }
 th{
     border: 1px solid black;
+}
+
+.hamburger{
+    display: none;
+}
+
+
+.bar{
+    display: block;
+    width: 30px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: black;
+}
+
+#contOfHamburger{
+    display: none;
+}
+
+
+@media (max-width:1300px) {
+    body{
+        display: grid;
+        grid-template: 70px 1fr;
+        min-height: 100vh;
+        width:100vw;
+    }
+    #navBar{
+        display: flex;
+        background-color: #DFE0DF;
+        padding-bottom: 0;
+        justify-content: space-around;
+        align-items: center;
+    }
+    img[alt='Logo']{
+        width: 50px;
+        height: 50px;
+    }
+    img[alt='LOgo']{
+        width: 50px;
+        height: 50px;
+    }
+    html{
+        width: 100vw;
+    }
+    body{
+        display: grid;
+        grid-template: 70px 1fr/1fr;
+        width:100vw;
+    }
+}
+@media (max-width:920px){
+    #contOfHamburger{
+        display: flex; 
+        justify-content: space-between;
+        align-items: center;
+        background-color: #DFE0DF;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    #navBar{
+        display: none;
+    }
+    img[alt='LOgo']{
+        display: none;
+    }
+    img[alt='Logo']{
+        border-radius: 50%;
+    }
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #DFE0DF;
+        cursor: pointer;
+        width: 50px;
+        height: 50px;
+    }
+    .hamburger.active{
+        display: flex;
+        justify-content: center;
+        position: fixed;
+        right: 60px;
+        height: 50px;
+        top: 20px;
+        background-color: white;
+        width: 50px;
+
+    }
+    .hamburger.active .bar:nth-child(2){
+        opacity: 0;
+    }
+    .hamburger.active .bar:nth-child(1){
+        transform: translateY(15px) rotate(45deg);
+    }
+    .hamburger.active .bar:nth-child(3){
+        transform: translateY(-15px) rotate(-45deg);
+    }
+    #navBar.active{
+        display: grid;
+        grid-template: repeat(7,75px)/1fr;
+        gap: 0;
+        position: fixed;
+        top: 0;
+        height:100%;
+        width: 300px;
+        padding-top: 20px;
+    }
+}
+ @media (max-width:740px){
+    h1{
+        font-size: 40px;
+    }
+    h2{
+        font-size: 28px;
+    }
+}
+@media (max-width:620px){
+    h1{
+        font-size: 32px;
+    }
+    h2{
+        font-size: 24px;
+    }
+    p{
+        font-size: 20px;
+        text-align: justify;
+    }
+}
+@media (max-width:504px){
+    h1{
+        font-size: 28px;
+    }
+    h2{
+        font-size: 20px;
+    }
+    p,h3{
+        font-size: 18px;
+    }
+}
+@media (max-width:445px){
+    h1{
+        font-size: 24px;
+    }
 }

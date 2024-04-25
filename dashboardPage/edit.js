@@ -1,8 +1,23 @@
 let content=document.querySelector('#content');
 let title=document.querySelector('#title');
 let image=document.querySelector('#imgUrl');
+const token = localStorage.getItem('token');
 
 var url = window.location.href;
+const decode = token => decodeURIComponent(atob(token.split('.')[1].replace('-', '+').replace('_', '/')).split('').map(c => `%${('00' + c.charCodeAt(0).toString(16)).slice(-2)}`).join(''));
+
+
+let userId=localStorage.getItem('userId');
+if(token===null || userId!=='661f937a29bd0474b48feab4'){
+    let html=document.querySelector('html')
+    html.setAttribute('style','display:none;')
+    window.location.href='../loginPage/login.html';
+    localStorage.clear();
+}
+else{
+    let html=document.querySelector('html')
+    html.removeAttribute('style')
+}
 
 function getParameterByName(name, url) {
     name = name.replace(/[\[\]]/g, "\\$&");
@@ -16,7 +31,7 @@ function getParameterByName(name, url) {
 // Retrieve the id parameter
 var idValue = getParameterByName('id', url);
 
-fetch('https://mybrand-backend-emhu.onrender.com/blogs',
+fetch('http://localhost:8080/blogs',
 )
     .then(res=>{
         res.json().then(data=>{
@@ -41,7 +56,10 @@ fetch('https://mybrand-backend-emhu.onrender.com/blogs',
         fetch(`http://localhost:8080/updateBlog/${idValue}`,{
 
             method:"PATCH",
-            headers:{"Content-Type":"application/json"},
+            headers:{
+                "Content-Type":"application/json",
+                'Authorization': `Bearer ${token}`
+            },
             body:JSON.stringify({
                 body:`${content.value}`,
                 title:`${title.value}`,

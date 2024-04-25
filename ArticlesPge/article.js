@@ -50,7 +50,9 @@ subBtn.addEventListener('click',()=>{
                 email:`${email}`
             })
         }).then(res=>{
-            console.log(res,email)
+            if(res.status===200){
+                window.location.reload()
+            }
         })
     }
 })
@@ -63,6 +65,82 @@ function createElementPageLink(id1,id2){
     const url = `../ArticlesPge/readMore.html?ids=${encodedIds}`;
     return url;
 
+}const decode = token => {
+    // Check if token is null or undefined
+    if (!token) {
+      console.error('Token is null or undefined');
+      return null;
+    }
+  
+    try {
+      // Split the token and retrieve the payload (second part)
+      const payload = token.split('.')[1];
+      if (!payload) {
+        console.error('Token does not contain a payload');
+        return null;
+      }
+  
+      // Replace URL-safe characters and decode the payload
+      const decodedPayload = atob(payload.replace('-', '+').replace('_', '/'));
+      
+      // Map each character to its hexadecimal representation
+      const decodedCharacters = decodedPayload.split('').map(c => `%${('00' + c.charCodeAt(0).toString(16)).slice(-2)}`);
+      
+      // Join the characters into a string
+      return decodeURIComponent(decodedCharacters.join(''));
+    } catch (error) {
+      console.error('Error decoding token:', error.message);
+      return null; // Handle error case appropriately
+    }
+  };
+  const token=localStorage.getItem('token')
+  const getUserIdFromToken = token => {
+    const decodedToken = JSON.parse(decodeURIComponent(atob(token.split('.')[1].replace('-', '+').replace('_', '/'))));
+    return decodedToken.userId || null;
+};
+
+if(token!==null){
+    const userId = getUserIdFromToken(token);
+console.log(userId);
+    fetch('https://mybrand-backend-emhu.onrender.com/users')
+.then(res=>{
+    res.json().then(data=>{
+        console.log(data)
+        const users=data;
+        users.forEach(user=>{
+
+            if (userId!=='661f937a29bd0474b48feab4' && userId===user._id){
+                let delLink=document.createElement('a')
+                let delTitle=document.createElement('h3')
+                let LogLink=document.createElement('a')
+                let LogTitle=document.createElement('h3')
+                LogTitle.textContent='Log Out',
+                LogLink.setAttribute('href','../loginPage/login.html')
+                LogLink.appendChild(LogTitle)
+                navBar.appendChild(LogLink)
+                delTitle.textContent='Delete Account'
+                delLink.appendChild(delTitle)
+                navBar.appendChild(delLink)
+                LogLink.addEventListener('click',()=>{
+                    localStorage.clear();
+                })
+                delLink.addEventListener('click',()=>{
+                    fetch(`https://mybrand-backend-emhu.onrender.com/users/${user._id}`,{
+                        method:'delete',
+                        headers:{
+                            "Content-Type":"application/json",
+                            'Authorization': `Bearer ${token}`
+                    }
+                    })
+                    .then(res=>{
+                        if(res.status===200){
+                            localStorage.clear();
+                            window.location.reload();
+                        }
+                    })
+                })
+            }
+        })
+    })
+})
 }
-const decode = token => decodeURIComponent(atob(token.split('.')[1].replace('-', '+').replace('_', '/')).split('').map(c => `%${('00' + c.charCodeAt(0).toString(16)).slice(-2)}`).join(''));
-const token = localStorage.getItem('token');
