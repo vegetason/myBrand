@@ -14,7 +14,7 @@ else{
     let html=document.querySelector('html')
     html.removeAttribute('style')
 }
-fetch('http://localhost:8080/subscribers',{
+fetch('https://mybrand-backend-emhu.onrender.com/subscribers',{
     headers:{
         "Content-Type":"application/json",
         'Authorization': `Bearer ${token}`

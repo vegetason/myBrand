@@ -15,7 +15,7 @@ else{
     let html=document.querySelector('html')
     html.removeAttribute('style')
 }
-fetch('http://localhost:8080/messages',{
+fetch('https://mybrand-backend-emhu.onrender.com/messages',{
     method:'GET',
     'Authorization': `Bearer ${token}`,
 })
@@ -39,7 +39,7 @@ fetch('http://localhost:8080/messages',{
                 tableRow.append(tableData1,tableData2,tableData3);
                 table.append(tableRow)
                 delBtn.addEventListener('click',()=>{
-                    fetch(`http://localhost:8080/deleteMessage/${tableData1.getAttribute('id')}`,{
+                    fetch(`https://mybrand-backend-emhu.onrender.com/deleteMessage/${tableData1.getAttribute('id')}`,{
                         method:'delete',
                         // headers: {
                         //     'Authorization': `Bearer ${token}`,

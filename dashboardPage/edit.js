@@ -31,7 +31,7 @@ function getParameterByName(name, url) {
 // Retrieve the id parameter
 var idValue = getParameterByName('id', url);
 
-fetch('http://localhost:8080/blogs',
+fetch('https://mybrand-backend-emhu.onrender.com/blogs',
 )
     .then(res=>{
         res.json().then(data=>{
@@ -53,7 +53,7 @@ fetch('http://localhost:8080/blogs',
     let editBtn=document.querySelector('#editbtn');
     editBtn.addEventListener('click',(e)=>{
         e.preventDefault()
-        fetch(`http://localhost:8080/updateBlog/${idValue}`,{
+        fetch(`https://mybrand-backend-emhu.onrender.com/updateBlog/${idValue}`,{
 
             method:"PATCH",
             headers:{
