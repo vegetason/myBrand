@@ -24,7 +24,7 @@ form.addEventListener('submit',async (e)=>{
     else if(res.status!==200){
         feedBack.textContent='';
         feedBack.textContent='Login unsuccessful check your email or pasword';
-        console.log(res)
+        alert('Login unsuccessful')
     }
     res.json().then(data=>{
 

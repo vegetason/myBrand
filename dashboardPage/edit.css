@@ -1,6 +1,3 @@
-/* *{
-    border: 1px solid blue;
-} */
 body{
     display: flex;
     justify-content: center;
@@ -70,29 +67,17 @@ button:hover{
 label::after{
     content: '*';
 }
-@media(max-width:521px){
+@media(max-width:500px){
     /* input{
         width: 300px;
     } */
-    form >div,h1{
-        width: 400px;
+    form{
+        width: 90%;
+        justify-self: center;
     }
     #edit{
-        width: 100%;
-    }
-}
-@media(max-width:465px){
-    /* input{
-        width: 300px;
-    } */
-    form >div{
-        width: 300px;
-    }
-    #container >div{
-        width: 300px;
-    }
-    
-    #afterForm{
-        width: 300px;
+        width: 90%;
+        padding: 0;
+        justify-self: center;
     }
 }

@@ -311,6 +311,11 @@ h3{
         width: 300px;
         padding-top: 20px;
     }
+    #intro{
+        width: 90%;
+        padding: 0;
+        justify-self: center;
+    }
 }
  @media (max-width:740px){
     h1{
