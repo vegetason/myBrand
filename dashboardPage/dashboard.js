@@ -16,7 +16,7 @@ else{
     let html=document.querySelector('html')
     html.removeAttribute('style')
 }
-fetch('http://localhost:8080/blogs')
+fetch('https://mybrand-backend-emhu.onrender.com/blogs')
     .then(res=>{
         res.json().then(data=>{
             const blogs=data;
@@ -56,7 +56,7 @@ fetch('http://localhost:8080/blogs')
     });
     submitButton.addEventListener('click',(e)=>{
         e.preventDefault();
-        fetch(`http://localhost:8080/createBlog`,{
+        fetch(`https://mybrand-backend-emhu.onrender.com/createBlog`,{
             method:'POST',
             headers:{
                 "Content-Type":"application/json",
@@ -102,7 +102,7 @@ fetch('http://localhost:8080/blogs')
         const token = localStorage.getItem('token');
     
       // Assuming you need to make a separate DELETE request to the API
-      fetch(`http://localhost:8080/deleteBlog/${_id}`, {
+      fetch(`https://mybrand-backend-emhu.onrender.com/deleteBlog/${_id}`, {
           method: 'delete',
           headers: {
               'Authorization': `Bearer ${token}`,
