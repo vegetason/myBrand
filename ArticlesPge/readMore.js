@@ -2,6 +2,8 @@ let content=document.querySelector('#content');
 let title=document.querySelector('h1');
 let image=document.querySelector('#image');
 let commentsContainer=document.querySelector('#commentsContainer')
+let login=document.querySelector('#login');
+login.removeAttribute('style');
 const token = localStorage.getItem('token');
 var url = window.location.href;
 

@@ -1,6 +1,8 @@
 let hamburger=document.querySelector('.hamburger');
 let navLinks=document.querySelectorAll('.navLink');
 let navBar=document.querySelector('#navBar');
+let login=document.querySelector('#login');
+login.removeAttribute('style');
 hamburger.addEventListener('click',()=>{
     hamburger.classList.toggle('active');
     navBar.classList.toggle('active');
@@ -38,6 +40,7 @@ console.log(userId);
       users.forEach(user=>{
 
           if (userId!=='661f937a29bd0474b48feab4' && userId===user._id){
+            login.setAttribute('style','display:none;')
               let delLink=document.createElement('a')
               let delTitle=document.createElement('h3')
               let LogLink=document.createElement('a')

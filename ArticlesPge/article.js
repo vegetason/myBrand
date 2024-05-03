@@ -1,5 +1,7 @@
 let body=document.querySelector('body')
 let theBlogContainer=document.querySelector('#container');
+let login=document.querySelector('#login');
+login.removeAttribute('style');
 fetch('https://mybrand-backend-emhu.onrender.com/blogs')
     .then(res=>{
         res.json().then(data=>{
@@ -110,6 +112,7 @@ console.log(userId);
         users.forEach(user=>{
 
             if (userId!=='661f937a29bd0474b48feab4' && userId===user._id){
+                login.setAttribute('style','display:none;')
                 let delLink=document.createElement('a')
                 let delTitle=document.createElement('h3')
                 let LogLink=document.createElement('a')

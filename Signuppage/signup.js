@@ -131,7 +131,7 @@ form.addEventListener('submit',(e)=>{
         .then(res=>{
             if(res.status===200) {
                 let inputs=document.querySelectorAll('input');
-                window.location.reload();
+                window.location.href='../loginPage/login.html';
             }
             console.log(res)
         })

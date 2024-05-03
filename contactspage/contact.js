@@ -4,6 +4,8 @@ let nameText=document.querySelector('#nameText')
 let messageText=document.querySelector('#messagetext')
 let characters=document.querySelector('#characters')
 let textarea=document.querySelector('textarea')
+let login=document.querySelector('#login');
+login.removeAttribute('style');
 form.addEventListener('submit',(e)=>{
     e.preventDefault()
     let email=document.getElementById('email').value;
@@ -97,6 +99,7 @@ console.log(userId);
       users.forEach(user=>{
 
           if (userId!=='661f937a29bd0474b48feab4' && userId===user._id){
+            login.setAttribute('style','display:none;')
               let delLink=document.createElement('a')
               let delTitle=document.createElement('h3')
               let LogLink=document.createElement('a')
