@@ -4,6 +4,19 @@ let emailText=document.querySelector('#emailText');
 let usernameText=document.querySelector('#usernameText')
 let passwordText=document.querySelector('#passwordText')
 let copasswordText=document.querySelector('#copassText')
+
+
+let dialog1=document.querySelector('#dialog1')
+let yesbtn=document.querySelector('#Yes');
+
+let okbtn=document.querySelector('#Ok')
+let dialog2=document.querySelector('#dialog2')
+
+
+okbtn.addEventListener('click',()=>{
+    dialog2.close();
+})
+
 form.addEventListener('submit',(e)=>{
     e.preventDefault()
     let password=document.getElementById('Password').value;
@@ -15,7 +28,6 @@ form.addEventListener('submit',(e)=>{
         e.preventDefault();
     // let user=createUser(Fullname,username,pass,copass)
     // users.push(user)
-    console.log(password)
     if(Fullname!==''){
         if(Fullname.match(/[^A-Za-z\s]/g)!==null){
             FullnameTExt.textContent='Full name cannot include characters which are not letters and space'
@@ -117,7 +129,6 @@ form.addEventListener('submit',(e)=>{
     else if(Fullname!==''&&Fullname!==null&&Fullname.match(/[^A-Za-z\s]/g)===null&&email.match( /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g)!==null&&email!==""&&email!==null&&username.length>10 &&username.length<20&&username.match(/\W/g)===null&&username!==''&&username!==null&&password.length>=8&&password.match(/['"$/ ]/g)===null&&password.match(/[0-9]/g)!==null&&password.match( /[^a-zA-Z0-9'"\/$]/g)!==null&&password.length<15&&password!==''&&password!=='null'&&password===copassword){
         let feedBack=document.querySelector('#feedback');
         e.preventDefault()
-        console.log(email,password,username)
         fetch('https://mybrand-backend-emhu.onrender.com/auth/register',{
             method:"POST",
             headers:{"Content-Type":"application/json"},
@@ -131,9 +142,17 @@ form.addEventListener('submit',(e)=>{
         .then(res=>{
             if(res.status===200) {
                 let inputs=document.querySelectorAll('input');
+                inputs.forEach(i=>i.value='');
+                dialog1.showModal();
+                yesbtn.addEventListener('click',()=>{
                 window.location.href='../loginPage/login.html';
+                })
             }
-            console.log(res)
+            else{
+                let inputs=document.querySelectorAll('input');
+                inputs.forEach(i=>i.value='');
+                dialog2.showModal()
+            }
         })
         .catch(error=>{console.log(error)})
     }
@@ -169,11 +188,9 @@ const getUserIdFromToken = token => {
 
 if(token!==null){
   const userId = getUserIdFromToken(token);
-console.log(userId);
   fetch('https://mybrand-backend-emhu.onrender.com/users')
 .then(res=>{
   res.json().then(data=>{
-      console.log(data)
       const users=data;
       users.forEach(user=>{
 

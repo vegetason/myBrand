@@ -4,6 +4,11 @@ let image=document.querySelector('#image');
 let commentsContainer=document.querySelector('#commentsContainer')
 let login=document.querySelector('#login');
 login.removeAttribute('style');
+let dialog1=document.querySelector('#dialog1')
+let yesbtn=document.querySelector('#Yes');
+let nobtn=document.querySelector('#No');
+let okbtn=document.querySelector('#Ok')
+let dialog2=document.querySelector('#dialog2')
 const token = localStorage.getItem('token');
 var url = window.location.href;
 
@@ -30,10 +35,13 @@ const decodedIds = decodeURIComponent(encodedIds);
 // Split the decoded IDs based on the delimiter
 const [id, userIdData] = decodedIds.split('|');
 
-// Further decode the userId from JSON format
 const userIdObj = JSON.parse(userIdData);
-const userId = userIdObj.userId;
-if(userId===null) userId=0;
+let userId;
+if(userIdObj===null) userId=0;
+
+ userId = userIdObj;
+
+
 
 let likesNbr=document.querySelector('#likesNumber');
 likesNbr.textContent=`Likes:0`
@@ -41,7 +49,6 @@ fetch('https://mybrand-backend-emhu.onrender.com/blogs')
     .then(res=>{
         res.json().then(data=>{
             const blogs=data;
-            console.log(blogs)
             for(let i=0;i<blogs.length;i++){
                 if(blogs[i]._id===id){
                     image.setAttribute('src',`${blogs[i].imageUrl}`)
@@ -49,7 +56,6 @@ fetch('https://mybrand-backend-emhu.onrender.com/blogs')
                     title.textContent=`${blogs[i].title}`
                     likesNbr.textContent=`Likes: ${blogs[i].likes.length}`
                     let comment= blogs[i].comment
-                    console.log(blogs[i].comment)
                     comment.forEach(n=>{
                         let comments=document.createElement('div')
                         let theDiv=document.createElement('div');
@@ -78,7 +84,9 @@ fetch('https://mybrand-backend-emhu.onrender.com/blogs')
             hamburger.classList.toggle('active');
         })
     })
-    console.log(id,userId)
+    okbtn.addEventListener('click',()=>{
+        dialog2.close();
+    })
     let commentBtn=document.querySelector('#comment')
     commentBtn.addEventListener('click',()=>{
         let commentText=document.querySelector('textarea').value;
@@ -92,8 +100,10 @@ fetch('https://mybrand-backend-emhu.onrender.com/blogs')
                 text:`${commentText}`
             })
         }).then(res=>{
-            console.log(res)
-            if (res.status===200) window.location.reload()
+            if (res.status===200) window.location.reload();
+            else {
+                dialog2.showModal()
+            }
         })
     })
     let likeBtn=document.querySelector('#like');
@@ -106,7 +116,9 @@ fetch('https://mybrand-backend-emhu.onrender.com/blogs')
             },
         }).then(res=>{
             if(res.status===200) window.location.reload();
-            else alert('Error occured')
+            else {
+                dialog2.showModal()
+            }
         })
     })
     const getUserIdFromToken = token => {
@@ -116,11 +128,9 @@ fetch('https://mybrand-backend-emhu.onrender.com/blogs')
     
     if(token!==null){
         const userId = getUserIdFromToken(token);
-    console.log(userId);
         fetch('https://mybrand-backend-emhu.onrender.com/users')
     .then(res=>{
         res.json().then(data=>{
-            console.log(data)
             const users=data;
             users.forEach(user=>{
     
@@ -140,6 +150,9 @@ fetch('https://mybrand-backend-emhu.onrender.com/blogs')
                         localStorage.clear();
                     })
                     delLink.addEventListener('click',()=>{
+                        dialog1.showModal()
+                    })
+                    yesbtn.addEventListener('click',()=>{
                         fetch(`https://mybrand-backend-emhu.onrender.com/users/${user._id}`,{
                             method:'delete',
                             headers:{
@@ -153,6 +166,9 @@ fetch('https://mybrand-backend-emhu.onrender.com/blogs')
                                 window.location.reload();
                             }
                         })
+                    });
+                    nobtn.addEventListener('click',()=>{
+                        dialog1.close()
                     })
                 }
             })

@@ -3,6 +3,10 @@ let title=document.querySelector('#title');
 let image=document.querySelector('#imgUrl');
 const token = localStorage.getItem('token');
 
+let dialog1=document.querySelector('#dialog1')
+let yesbtn=document.querySelector('#Yes');
+let nobtn=document.querySelector('#No');
+
 var url = window.location.href;
 const decode = token => decodeURIComponent(atob(token.split('.')[1].replace('-', '+').replace('_', '/')).split('').map(c => `%${('00' + c.charCodeAt(0).toString(16)).slice(-2)}`).join(''));
 
@@ -51,7 +55,13 @@ fetch('https://mybrand-backend-emhu.onrender.com/blogs',
         })
     });
     let editBtn=document.querySelector('#editbtn');
+    
     editBtn.addEventListener('click',(e)=>{
+        e.preventDefault();
+        dialog1.showModal();
+    })
+
+    yesbtn.addEventListener('click',(e)=>{
         e.preventDefault()
         fetch(`https://mybrand-backend-emhu.onrender.com/updateBlog/${idValue}`,{
 
@@ -69,6 +79,9 @@ fetch('https://mybrand-backend-emhu.onrender.com/blogs',
         }).then(res=>{if(res.status===200)window.location.href='./dashboard.html';
                            else alert('Error occured')
                      })
+    })
+    nobtn.addEventListener('click',()=>{
+        dialog1.close()
     })
     let back=document.querySelector('#back');
     back.addEventListener('click',()=>{window.location.href='./dashboard.html'})

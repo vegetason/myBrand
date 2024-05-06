@@ -4,6 +4,12 @@ let theBlogContainer=document.querySelector('#container');
 const token = localStorage.getItem('token');
 const decode = token => decodeURIComponent(atob(token.split('.')[1].replace('-', '+').replace('_', '/')).split('').map(c => `%${('00' + c.charCodeAt(0).toString(16)).slice(-2)}`).join(''));
 
+let dialog1=document.querySelector('#dialog1')
+let yesbtn=document.querySelector('#Yes');
+let nobtn=document.querySelector('#No');
+
+let okbtn=document.querySelector('#Ok')
+let dialog2=document.querySelector('#dialog2')
 
 let userId=localStorage.getItem('userId');
 if(token===null || userId!=='661f937a29bd0474b48feab4'){
@@ -16,6 +22,12 @@ else{
     let html=document.querySelector('html')
     html.removeAttribute('style')
 }
+
+okbtn.addEventListener('click',()=>{
+    dialog2.close();
+    window.location.reload();
+})
+
 fetch('https://mybrand-backend-emhu.onrender.com/blogs')
     .then(res=>{
         res.json().then(data=>{
@@ -39,7 +51,14 @@ fetch('https://mybrand-backend-emhu.onrender.com/blogs')
                 removebutton.addEventListener('click',()=>{
                     let id=removebutton.getAttribute('id')
                     console.log(id)
-                    deleteBlog(id);
+                    dialog1.showModal()
+                    yesbtn.addEventListener('click',()=>{
+                        deleteBlog(id)
+                    })
+
+                    nobtn.addEventListener('click',()=>{
+                        dialog1.close()
+                    })
                 })
                 let edit=document.createElement('button');
                 edit.setAttribute('id',`${blogs[i]._id}`);
@@ -68,7 +87,7 @@ fetch('https://mybrand-backend-emhu.onrender.com/blogs')
                 body:document.getElementById('content').value
             })
         }).then(res=>{
-            if(res.status===200) window.location.reload();
+            if(res.status===200) dialog2.showModal();
         });
     })
     // function deleteBlog(_id) {

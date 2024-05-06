@@ -2,13 +2,16 @@ let body=document.querySelector('body')
 let theBlogContainer=document.querySelector('#container');
 let login=document.querySelector('#login');
 login.removeAttribute('style');
+
+let dialog1=document.querySelector('#dialog1')
+let yesbtn=document.querySelector('#Yes');
+let nobtn=document.querySelector('#No');
+
 fetch('https://mybrand-backend-emhu.onrender.com/blogs')
     .then(res=>{
         res.json().then(data=>{
             const blogs=data;
-            console.log(blogs)
             for(let i=0;i<blogs.length;i++){
-                console.log(blogs[i]._id)
                 let theDiv=document.createElement('div');
                 let thetitle=document.createElement('h1')
                 thetitle.textContent=`${blogs[i].title}`
@@ -43,7 +46,6 @@ navLinks.forEach(link=>{
 let subBtn=document.querySelector('#sub');
 subBtn.addEventListener('click',()=>{
     let email= document.getElementById('email').value;
-    console.log(email)
     if(email.match( /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g)!==null){
         fetch('https://mybrand-backend-emhu.onrender.com/subscribe',{
             method:"POST",
@@ -103,11 +105,9 @@ function createElementPageLink(id1,id2){
 
 if(token!==null){
     const userId = getUserIdFromToken(token);
-console.log(userId);
     fetch('https://mybrand-backend-emhu.onrender.com/users')
 .then(res=>{
     res.json().then(data=>{
-        console.log(data)
         const users=data;
         users.forEach(user=>{
 
@@ -128,6 +128,9 @@ console.log(userId);
                     localStorage.clear();
                 })
                 delLink.addEventListener('click',()=>{
+                    dialog1.showModal()
+                })
+                yesbtn.addEventListener('click',()=>{
                     fetch(`https://mybrand-backend-emhu.onrender.com/users/${user._id}`,{
                         method:'delete',
                         headers:{
@@ -141,6 +144,9 @@ console.log(userId);
                             window.location.reload();
                         }
                     })
+                });
+                nobtn.addEventListener('click',()=>{
+                    dialog1.close()
                 })
             }
         })

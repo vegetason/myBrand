@@ -2,6 +2,11 @@ let hamburger=document.querySelector('.hamburger');
 let navLinks=document.querySelectorAll('.navLink');
 let navBar=document.querySelector('#navBar');
 let login=document.querySelector('#login');
+
+let dialog1=document.querySelector('#dialog1')
+let yesbtn=document.querySelector('#Yes');
+let nobtn=document.querySelector('#No');
+
 login.removeAttribute('style');
 hamburger.addEventListener('click',()=>{
     hamburger.classList.toggle('active');
@@ -21,11 +26,9 @@ const getUserIdFromToken = token => {
 
 if(token!==null){
   const userId = getUserIdFromToken(token);
-console.log(userId);
   fetch('https://mybrand-backend-emhu.onrender.com/users')
 .then(res=>{
   res.json().then(data=>{
-      console.log(data)
       const users=data;
       users.forEach(user=>{
 
@@ -46,20 +49,26 @@ console.log(userId);
                   localStorage.clear();
               })
               delLink.addEventListener('click',()=>{
-                  fetch(`https://mybrand-backend-emhu.onrender.com/users/${user._id}`,{
-                      method:'delete',
-                      headers:{
-                          "Content-Type":"application/json",
-                          'Authorization': `Bearer ${token}`
-                  }
-                  })
-                  .then(res=>{
-                      if(res.status===200){
-                          localStorage.clear();
-                          window.location.reload();
-                      }
-                  })
-              })
+                dialog1.showModal()
+            })
+            yesbtn.addEventListener('click',()=>{
+                fetch(`https://mybrand-backend-emhu.onrender.com/users/${user._id}`,{
+                    method:'delete',
+                    headers:{
+                        "Content-Type":"application/json",
+                        'Authorization': `Bearer ${token}`
+                }
+                })
+                .then(res=>{
+                    if(res.status===200){
+                        localStorage.clear();
+                        window.location.reload();
+                    }
+                })
+            });
+            nobtn.addEventListener('click',()=>{
+                dialog1.close()
+            })
           }
       })
   })

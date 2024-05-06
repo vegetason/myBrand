@@ -1,13 +1,18 @@
 let form= document.querySelector('form');
 let feedBack=document.querySelector('#feedback');
+let okbtn=document.querySelector('#Ok')
+let dialog2=document.querySelector('#dialog2')
+let dialog1=document.querySelector('#dialog1')
+let yesbtn=document.querySelector('#Yes');
 
 
-
+okbtn.addEventListener('click',()=>{
+    dialog2.close();
+})
 form.addEventListener('submit',async (e)=>{
      e.preventDefault();
      let email=document.getElementById('email').value;
      let password=document.getElementById('Password').value;
-     console.log(email,password);
      fetch("https://mybrand-backend-emhu.onrender.com/auth/login",{
         method:"POST",
         headers:{"Content-Type":"application/json"},
@@ -17,40 +22,41 @@ form.addEventListener('submit',async (e)=>{
         })
      })
 .then(res=>{
-    if(res.status===200){
-        feedBack.textContent='Login Successfull';
-        console.log(res)
-    }
-    else if(res.status!==200){
-        feedBack.textContent='';
-        feedBack.textContent='Login unsuccessful check your email or pasword';
-    }
-    res.json().then(data=>{
-
-    window.location.href = "../dashboardPage/dashboard.html";
-    var role = data.user.userRole;
-    var token= data.token;
-    var email= data.user.email;
-    var userId= data.user._id;
-    var name = data.user.username;
-    console.log(token,email,userId,name);
-    localStorage.setItem('token',token)
-
-    if (email === 'irakozepaulin1234@gmail.com') {
-        localStorage.setItem('adminIsLoggedIn', true);
-        localStorage.setItem('currentUserEmail', email);
-        localStorage.setItem('currentUsername', name);
-        localStorage.setItem('userId', userId);
-        window.location.href = "../dashboardPage/dashboard.html";
-    } else {
-        localStorage.setItem('userIsLoggedIn', true);
-        localStorage.setItem('currentUserEmail', email);
-        localStorage.setItem('currentUsername', name);
-        localStorage.setItem('userId', userId);
-        window.location.href = "../homepage/index.html";
+    if(res.status===201){
+        res.json().then(data=>{
+            var role = data.user.userRole;
+            var token= data.token;
+            var email= data.user.email;
+            var userId= data.user._id;
+            var name = data.user.username;
+            localStorage.setItem('token',token)
         
+            if (email === 'irakozepaulin1234@gmail.com') {
+                localStorage.setItem('adminIsLoggedIn', true);
+                localStorage.setItem('currentUserEmail', email);
+                localStorage.setItem('currentUsername', name);
+                localStorage.setItem('userId', userId);
+                dialog1.showModal();
+                yesbtn.addEventListener('click',()=>{
+                window.location.href = "../dashboardPage/dashboard.html";
+                })
+            } else {
+                
+                localStorage.setItem('userIsLoggedIn', true);
+                localStorage.setItem('currentUserEmail', email);
+                localStorage.setItem('currentUsername', name);
+                localStorage.setItem('userId', userId);
+                dialog1.showModal();
+                yesbtn.addEventListener('click',()=>{
+                window.location.href = "../homepage/index.html";
+                })
+            }
+            })
     }
-    })
+    else if(res.status!==201){
+        dialog2.showModal()
+    }
+  
 })
 
 window.onload = function() {
@@ -85,11 +91,9 @@ const getUserIdFromToken = token => {
 
 if(token!==null){
   const userId = getUserIdFromToken(token);
-console.log(userId);
   fetch('https://mybrand-backend-emhu.onrender.com/users')
 .then(res=>{
   res.json().then(data=>{
-      console.log(data)
       const users=data;
       users.forEach(user=>{
 

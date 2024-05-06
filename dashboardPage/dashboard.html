@@ -9,47 +9,69 @@
     <script src="../dashboardPage/dashboard.js" defer></script>
 </head>
 <body>
-    <body>
-        <div id="navBar">
-            <img src="../images/logo copy.png" alt="LOgo" width="300px"height="300px">
-            <a href="../homepage/index.html"><h3>Home</h3></a>
-            <a href="../dashboardPage/dashboard.html"><h3>My articles</h3></a>
-            <a href="../dashboardPage/messages.html"><h3>messages</h3></a>
-            <a href="../dashboardPage/subscriber.html"><h3>Subscribers</h3></a>
-            <a href="../loginPage/login.html" id="logout"><h3>Logout</h3></a>
+    <div id="navBar">
+        <img src="../images/logo copy.png" alt="LOgo" width="300px"height="300px">
+        <a href="../homepage/index.html"><h3>Home</h3></a>
+        <a href="../dashboardPage/dashboard.html"><h3>My articles</h3></a>
+        <a href="../dashboardPage/messages.html"><h3>messages</h3></a>
+        <a href="../dashboardPage/subscriber.html"><h3>Subscribers</h3></a>
+        <a href="../loginPage/login.html" id="logout"><h3>Logout</h3></a>
+    </div>
+    <div id="contOfHamburger">
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
         </div>
-        <div id="contOfHamburger">
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-            <img src="../images/logo copy.png" alt="Logo" width="300px"height="300px">
+        <img src="../images/logo copy.png" alt="Logo" width="300px"height="300px">
+    </div>
+    <div id="containerOfBlogs">
+        <h1>My Blogs:
+            <div style="margin-top: 5px;width:100px;height:5px; background-color: #FFB703;border-radius: 3px;"></div>
+            <div style="width:200px;height:5px; background-color: #FFB703;border-radius: 3px;"></div>
+        </h1>
+        <div id="container"></div>
+        <div>
+            <h2>Add Blog</h2>
+            <form action="">
+                <div>
+                    <label for="title">Title:</label>
+                    <input type="text" name="title" id="title" placeholder="Title">
+                </div>
+                <div>
+                    <label for="imageUrl">Image Url:</label>
+                    <input type="text" name="imageUrl" id="imageUrl" placeholder="Image Url">
+                </div>
+                <div>
+                    <h3>Content:</h3>
+                    <textarea id="content" placeholder='Content'></textarea>
+                </div>
+                <button id="done">Done</button>
+            </form>
         </div>
-        <div id="containerOfBlogs">
-            <h1>My Blogs:
-                <div style="margin-top: 5px;width:100px;height:5px; background-color: #FFB703;border-radius: 3px;"></div>
-                <div style="width:200px;height:5px; background-color: #FFB703;border-radius: 3px;"></div>
-            </h1>
-            <div id="container"></div>
+    </div>
+    <dialog id="dialog1">
+        <div>
             <div>
-                <h2>Add Blog</h2>
-                <form action="">
-                    <div>
-                        <label for="title">Title:</label>
-                        <input type="text" name="title" id="title" placeholder="Title">
-                    </div>
-                    <div>
-                        <label for="imageUrl">Image Url:</label>
-                        <input type="text" name="imageUrl" id="imageUrl" placeholder="Image Url">
-                    </div>
-                    <div>
-                        <h3>Content:</h3>
-                        <textarea id="content" placeholder='Content'></textarea>
-                    </div>
-                    <button id="done">Done</button>
-                </form>
+                Do you want to delete this Article?
+            </div>
+    
+            <div>
+                <button id="Yes">Yes</button>
+                <button id="No">No</button>
             </div>
         </div>
+    </dialog>
+    <dialog id="dialog2">
+        <div>
+            <div>
+                Article created Successfully.
+            </div>
+    
+            <div>
+                <button id="Ok">Ok</button>
+            </div>
+        </div>
+    </dialog>
 </body>
 </html>

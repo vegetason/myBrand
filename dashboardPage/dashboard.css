@@ -303,3 +303,18 @@ h1{
         width: 300px;
     }
 }
+
+dialog >div{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    align-items: center;
+}
+
+
+
+dialog{
+    width: min(600px,80%);
+    border-radius: 8px;
+}

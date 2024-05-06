@@ -5,6 +5,11 @@ let messageText=document.querySelector('#messagetext')
 let characters=document.querySelector('#characters')
 let textarea=document.querySelector('textarea')
 let login=document.querySelector('#login');
+
+let dialog1=document.querySelector('#dialog1')
+let yesbtn=document.querySelector('#Yes');
+let nobtn=document.querySelector('#No');
+
 login.removeAttribute('style');
 form.addEventListener('submit',(e)=>{
     e.preventDefault()
@@ -45,7 +50,6 @@ form.addEventListener('submit',(e)=>{
     }
     if(email!=='' && email.match( /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g)!==null && theMesssage.length>=50 && fullname!==''){
         e.preventDefault()
-        console.log(email,theMesssage)
         fetch('https://mybrand-backend-emhu.onrender.com/createMessage',{
             method:"POST",
             headers:{"Content-Type":"application/json"},
@@ -59,7 +63,6 @@ form.addEventListener('submit',(e)=>{
             if(res.status===200){
                 alert('message Sent successfully')
             };
-            console.log(res)
         })
         .catch(error=>{console.log(error)})
     }
@@ -90,11 +93,9 @@ const getUserIdFromToken = token => {
 
 if(token!==null){
   const userId = getUserIdFromToken(token);
-console.log(userId);
   fetch('https://mybrand-backend-emhu.onrender.com/users')
 .then(res=>{
   res.json().then(data=>{
-      console.log(data)
       const users=data;
       users.forEach(user=>{
 
@@ -115,20 +116,26 @@ console.log(userId);
                   localStorage.clear();
               })
               delLink.addEventListener('click',()=>{
-                  fetch(`https://mybrand-backend-emhu.onrender.com/users/${user._id}`,{
-                      method:'delete',
-                      headers:{
-                          "Content-Type":"application/json",
-                          'Authorization': `Bearer ${token}`
-                  }
-                  })
-                  .then(res=>{
-                      if(res.status===200){
-                          localStorage.clear();
-                          window.location.reload();
-                      }
-                  })
-              })
+                dialog1.showModal()
+            })
+            yesbtn.addEventListener('click',()=>{
+                fetch(`https://mybrand-backend-emhu.onrender.com/users/${user._id}`,{
+                    method:'delete',
+                    headers:{
+                        "Content-Type":"application/json",
+                        'Authorization': `Bearer ${token}`
+                }
+                })
+                .then(res=>{
+                    if(res.status===200){
+                        localStorage.clear();
+                        window.location.reload();
+                    }
+                })
+            });
+            nobtn.addEventListener('click',()=>{
+                dialog1.close()
+            })
           }
       })
   })
